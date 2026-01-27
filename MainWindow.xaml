@@ -1,0 +1,94 @@
+﻿<Window x:Class="Coursework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coursework"
+        mc:Ignorable="d"
+        Title="Облік асортименту квіткового магазину" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Додати квітку" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Click="Button_Click"/>
+            <Button Grid.Column="1" Content="Видалити квітку" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"/>
+
+        </Grid>
+
+
+        <DataGrid
+          x:Name="ProductsGrid"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          SelectionMode="Single"
+          HeadersVisibility="Column"
+          CanUserAddRows="False" Margin="0,48,0,0" Grid.RowSpan="2">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Назва"
+                            Binding="{Binding Name}"
+                            Width="*" />
+
+                <DataGridTextColumn Header="Кількість"
+                            Binding="{Binding Count}"
+                            Width="100" />
+
+                <DataGridTextColumn Header="Ціна"
+                            Binding="{Binding Price}"
+                            Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="160*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Назва" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="88" Height="26" Grid.ColumnSpan="2"/>
+            <Label Content="Кількість" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="60" Height="26"/>
+            <Label Content="Ціна" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="62" Height="26"/>
+            <Label Content="Категорія" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="62"/>
+            <Label Content="Сорт" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="36"/>
+            <Label Content="К﻿олір" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Height="25" Width="40"/>
+            <Label Content="Опис" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="26" Width="38"/>
+            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"/>
+            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="1"/>
+            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="2"/>
+            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="3"/>
+            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="4"/>
+            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="5"/>
+            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Height="135" Width="300"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Статистика" HorizontalAlignment="Left" VerticalAlignment="Center" Width="177" Click="Button_Click_1" Margin="13,0,0,0"/>
+            <Button Content="Редагувати інформацію" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="177" Click="Button_Click_1" Margin="13,0,0,0"/>
+
+        </Grid>
+
+
+
+    </Grid>
+</Window>
