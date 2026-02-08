@@ -8,8 +8,9 @@
         Title="Облік асортименту квіткового магазину" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="400*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="239*"/>
+            <RowDefinition Height="147*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400*"/>
@@ -32,12 +33,25 @@
           IsReadOnly="True"
           SelectionMode="Single"
           HeadersVisibility="Column"
-          CanUserAddRows="False" Margin="0,48,0,0" Grid.RowSpan="2">
+          SelectionChanged="ProductsGrid_Selected"
+          CanUserAddRows="False" Margin="0,48,10,10" Grid.RowSpan="2" Grid.ColumnSpan="2">
 
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"
+                            Binding="{Binding Id}"
+                            Width="20" />
+                
                 <DataGridTextColumn Header="Назва"
                             Binding="{Binding Name}"
                             Width="*" />
+
+                <DataGridTextColumn Header="Category"
+                            Binding="{Binding CategoryName}"
+                            Width="*" />
+
+                <DataGridTextColumn Header="Type"
+                            Binding="{Binding Type}"
+                            Width="100" />
 
                 <DataGridTextColumn Header="Кількість"
                             Binding="{Binding Count}"
@@ -48,7 +62,7 @@
                             Width="100" />
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Grid Grid.Column="1" Margin="0,48,0,0" Grid.RowSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="4*"/>
@@ -62,20 +76,20 @@
                 <RowDefinition Height="40*"/>
                 <RowDefinition Height="160*"/>
             </Grid.RowDefinitions>
-            <Label Content="Назва" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="88" Height="26" Grid.ColumnSpan="2"/>
-            <Label Content="Кількість" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="60" Height="26"/>
-            <Label Content="Ціна" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="62" Height="26"/>
-            <Label Content="Категорія" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="62"/>
-            <Label Content="Сорт" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="36"/>
-            <Label Content="К﻿олір" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Height="25" Width="40"/>
-            <Label Content="Опис" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="26" Width="38"/>
-            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"/>
-            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="1"/>
-            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="2"/>
-            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="3"/>
-            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="4"/>
-            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Grid.Row="5"/>
-            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Height="135" Width="300"/>
+            <Label Content="Назва" HorizontalAlignment="Left" Margin="-387,5,0,0" VerticalAlignment="Top" Width="88" Height="26" Grid.Row="6"/>
+            <Label Content="Кількість" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" Width="60" Height="26" Margin="-387,68,0,0"/>
+            <Label Content="Ціна" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" Width="62" Height="26" Margin="-388,106,0,0"/>
+            <Label Content="Категорія" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" Height="26" Width="62" Margin="-387,37,0,0"/>
+            <Label Content="Сорт" HorizontalAlignment="Left" Margin="-201,67,0,0" Grid.Row="6" VerticalAlignment="Top" Height="26" Width="36"/>
+            <Label Content="К﻿олір" HorizontalAlignment="Left" Margin="-201,106,0,0" Grid.Row="6" VerticalAlignment="Top" Height="25" Width="40"/>
+            <Label Content="Опис" HorizontalAlignment="Left" Margin="10,6,0,0" Grid.Row="6" VerticalAlignment="Top" Height="26" Width="38"/>
+            <Label x:Name="label_name" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Margin="-307,5,0,0" Grid.Row="6"/>
+            <Label x:Name="label_count" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Grid.Row="6" Margin="-307,68,0,0"/>
+            <Label x:Name="label_price" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Grid.Row="6" Margin="-307,106,0,0"/>
+            <Label x:Name="label_category" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="274" Grid.Row="6" Margin="-307,37,0,0"/>
+            <Label x:Name="label_type" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Grid.Row="6" Margin="-157,67,0,0"/>
+            <Label x:Name="label_color" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Grid.Row="6" Margin="-156,106,0,0"/>
+            <Label x:Name="label_desc" Content="" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" Height="135" Width="300" Margin="0,5,0,0" Grid.Column="1"/>
         </Grid>
 
         <Grid Grid.Column="1">

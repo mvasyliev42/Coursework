@@ -6,18 +6,49 @@
         xmlns:local="clr-namespace:Coursework"
         xmlns:oxy="http://oxyplot.org/wpf" x:Class="Coursework.Dashbord"
         mc:Ignorable="d"
-        Title="Dashbord" Height="450" Width="800">
+        Title="Dashbord" Height="450" Width="800" Top="200" Left="200">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="195*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="391*"/>
-            <ColumnDefinition Width="409*"/>
-        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
 
-        <oxy:PlotView Model="{Binding PlotModel}" />
-        
+            <Button Content="Квіти" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="20" Click="Button_Click"/>
+            <Button  Content="Додати квітку" HorizontalAlignment="Center" VerticalAlignment="Center" Width="178" Height="20" Grid.Column="1" Click="Button_Click_1"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="59*"/>
+                <RowDefinition Height="71*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="41*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Квіти, які закінчуються:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="205"/>
+            <Label Grid.Column="1" Content="Топ 5 по кількостів:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="305"/>
+            <DataGrid x:Name="datagrid_fading" Margin="10,41,10,0" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"  Width="20"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"  Width="*"/>
+                    <DataGridTextColumn Header="Count" Binding="{Binding Count}"  Width="50"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="datagrid_top5" Grid.Column="1" Margin="10,41,10,0" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"  Width="20"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"  Width="*"/>
+                    <DataGridTextColumn Header="Count" Binding="{Binding Count}"  Width="50"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+
     </Grid>
 </Window>

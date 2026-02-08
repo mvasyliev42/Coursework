@@ -1,4 +1,5 @@
 ﻿using Coursework.Data;
+using Coursework.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,22 @@ namespace Coursework.Services
         public CategoriesService(IServiceProvider db)
         {
             this._db = db;
+        }
+
+        public Categories addCategory(string name)
+        {
+            using (var scope = _db.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                // create INSERT
+                var category = new Categories
+                {
+                    Name = name
+                };
+                dbContext.Categories.Add(category);
+                dbContext.SaveChanges();
+                return category;
+            }
         }
 
         public List<Models.Categories> getListCategories()

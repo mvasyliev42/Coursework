@@ -27,14 +27,17 @@ namespace Coursework
 
                     services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
-                    services.AddSingleton<MainWindow>();
-                    services.AddSingleton<Form>();
+                    services.AddTransient<Dashbord>();
+                    services.AddTransient<MainWindow>();
+                    services.AddTransient<Form>();
+
+                    services.AddScoped<Services.FlowersService>();
                 })
                 .Build();
 
             _host.Start();
 
-            var mainWindow = _host.Services.GetRequiredService<MainWindow>();
+            var mainWindow = _host.Services.GetRequiredService<Dashbord>();
             mainWindow.Show();
         }
 

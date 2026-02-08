@@ -46,6 +46,7 @@
         <ComboBox x:Name="FormCategory"
                   DisplayMemberPath="Name"
                   SelectedValuePath="Id"
+                  IsTextSearchEnabled="True"
                   Grid.Column="1" 
                   IsEditable="True" 
                   HorizontalAlignment="Left" 
