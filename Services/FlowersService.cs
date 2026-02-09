@@ -13,7 +13,7 @@ namespace Coursework.Services
     internal class FlowersService
     {
 
-        public IServiceProvider _db;
+        private IServiceProvider _db;
 
 
 
@@ -136,7 +136,7 @@ namespace Coursework.Services
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 // create SELECT
-                var flowers = dbContext.Flowers.OrderByDescending(p => p.Price).Take(5).ToList();
+                var flowers = dbContext.Flowers.OrderByDescending(p => p.Count).Take(5).ToList();
                 return flowers;
             }
         }
