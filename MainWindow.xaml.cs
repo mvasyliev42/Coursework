@@ -43,7 +43,7 @@ namespace Coursework
         public void loadFlowers()
         {
             ProductsGrid.ItemsSource = new List<FlowerDto>();
-            ProductsGrid.ItemsSource = _flowersService.getListFlowers();
+            ProductsGrid.ItemsSource = _flowersService.getList();
         }
 
         public void setParentWindow(Window parentWindow)

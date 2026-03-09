@@ -7,11 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Coursework.Models;
 using System.Data.Entity;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace Coursework.Services
 {
-    internal class FlowersService
+    internal class FlowersService: Service
     {
+
+
+        public int CategoryId;
+        public string Name;
+        public string Description;
+        public int Count;
+        public float Price;
+        public string Type;
+        public string Color;
 
         private IServiceProvider _db;
 
@@ -22,7 +33,7 @@ namespace Coursework.Services
             this._db = db;
         }
 
-        public List<Data.FlowerDto> getListFlowers()
+        public override List<IModel> getList()
         {
             using (var scope = _db.CreateScope())
             {
@@ -40,19 +51,16 @@ namespace Coursework.Services
                     Price = f.Price,
                     Color = f.Color,
                     Description = f.Description
-                }).OrderBy(p => p.Name).ToList();
+                }).OrderBy(p => p.Name).ToList<IModel>();
 
                 return flowers;
             }
         }
 
-        public bool addFlower(int CategoryId, 
-            string Name, 
-            string Description, 
-            int Count, 
-            float Price, 
-            string Type, 
-            string Color)
+
+
+
+        public bool save()
         {
             using (var scope = _db.CreateScope())
             {
@@ -61,54 +69,46 @@ namespace Coursework.Services
 
                 var flower = new Flowers()
                 {
-                    CategoryId = CategoryId,
-                    Name = Name,
-                    Description = Description,
-                    Count = Count,
-                    Price = Price,
-                    Type = Type,
-                    Color = Color,
+                    CategoryId = this.CategoryId,
+                    Name = this.Name,
+                    Description = this.Description,
+                    Count = this.Count,
+                    Price = this.Price,
+                    Type = this.Type,
+                    Color = this.Color,
                     CreatedAt = DateTime.UtcNow
                 };
 
-                
+
                 dbContext.Flowers.Add(flower);
                 var count = dbContext.SaveChanges();
 
-                return count > 0? true: false;
+                return count > 0 ? true : false;
 
 
             }
-
         }
 
-        public bool UpdateFlower(int Id,
-            int CategoryId,
-            string Name,
-            string Description,
-            int Count,
-            float Price,
-            string Type,
-            string Color)
+        public override bool update(int id)
         {
             using (var scope = _db.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 // create SELECT
-                var flower = dbContext.Flowers.FirstOrDefault(f => f.Id == Id);
+                var flower = dbContext.Flowers.FirstOrDefault(f => f.Id == id);
 
                 if (flower == null)
                 {
                     return false;
                 }
 
-                flower.CategoryId = CategoryId;
-                flower.Name = Name;
-                flower.Description = Description;
-                flower.Count = Count;
-                flower.Price = Price;
-                flower.Type = Type;
-                flower.Color = Color;
+                flower.CategoryId = this.CategoryId;
+                flower.Name = this.Name;
+                flower.Description = this.Description;
+                flower.Count = this.Count;
+                flower.Price = this.Price;
+                flower.Type = this.Type;
+                flower.Color = this.Color;
 
                 var count = dbContext.SaveChanges();
 
@@ -136,7 +136,7 @@ namespace Coursework.Services
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 // create SELECT
-                var flowers = dbContext.Flowers.OrderByDescending(p => p.Count).Take(5).ToList();
+                var flowers = dbContext.Flowers.OrderBy(p => p.Count).Take(5).ToList();
                 return flowers;
             }
         }

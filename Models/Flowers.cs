@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Coursework.Models
 {
-    public class Flowers
+    public class Flowers: IModel
     {
         public int Id { get; set; }
 

@@ -40,8 +40,8 @@
                 <ColumnDefinition Width="325*"/>
                 <ColumnDefinition Width="325*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Очистити форму" HorizontalAlignment="Center" VerticalAlignment="Center" Width="305" BorderBrush="#FFF44336" Background="#FFF44336"/>
-            <Button Grid.Column="1" Content="Зберегти" HorizontalAlignment="Center" VerticalAlignment="Center" Width="305" Background="#FF4CAF50" Click="Button_Click"/>
+            <Button Grid.Column="1" Content="Очистити форму" HorizontalAlignment="Center" VerticalAlignment="Center" Width="305" BorderBrush="#FFF44336" Background="#FFF44336"/>
+            <Button Grid.Column="0" Content="Зберегти" HorizontalAlignment="Center" VerticalAlignment="Center" Width="305" Background="#FF4CAF50" Click="Button_Click"/>
         </Grid>
         <ComboBox x:Name="FormCategory"
                   DisplayMemberPath="Name"

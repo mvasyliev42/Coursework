@@ -35,8 +35,8 @@ namespace Coursework
 
             _categoryService = new CategoriesService(this._db);
 
-            FormCategory.ItemsSource = _categoryService.getListCategories();
-
+            FormCategory.ItemsSource = _categoryService.getList();
+            
 
         }
 
@@ -51,7 +51,7 @@ namespace Coursework
             if (flower != null)
             {
                 _flower = flower;
-                FormCategory.SelectedValue = _categoryService.getListCategories().FirstOrDefault(c => c.Name == flower.CategoryName)?.Id;
+                FormCategory.SelectedValue = _categoryService.getList().FirstOrDefault(c => c.Name == flower.CategoryName)?.Id;
                 FormName.Text = flower.Name;
                 FormDescription.Text = flower.Description;
                 FormCount.Text = flower.Count.ToString();
@@ -72,8 +72,9 @@ namespace Coursework
             if (FormCategory.SelectedItem == null)
             {
                 CategoriesService categoryService = new CategoriesService(this._db);
-                var category = categoryService.addCategory(FormCategory.Text);
-                categoryId = category.Id;
+                categoryService.name = FormCategory.Text;
+                categoryService.save();
+                categoryId = categoryService.inserted_id;
             }
             else
             {
@@ -83,14 +84,22 @@ namespace Coursework
             bool status = false;
 
 
+
+            flowerService.CategoryId = categoryId;
+            flowerService.Name = FormName.Text;
+            flowerService.Description = FormDescription.Text;
+            flowerService.Count = int.Parse(FormCount.Text);
+            flowerService.Price = float.Parse(FormPrice.Text);
+            flowerService.Type = FormType.Text;
+            flowerService.Color = FormColor.Text;
+
             if (_flower.Id == null)
             {
-                status = flowerService.addFlower(categoryId, FormName.Text, FormDescription.Text, int.Parse(FormCount.Text), float.Parse(FormPrice.Text), FormType.Text, FormColor.Text);
-
+                status = flowerService.save();
             }
             else
             {
-                status = flowerService.UpdateFlower(_flower.Id, categoryId, FormName.Text, FormDescription.Text, int.Parse(FormCount.Text), float.Parse(FormPrice.Text), FormType.Text, FormColor.Text);
+                status = flowerService.update(_flower.Id);
             }
 
 

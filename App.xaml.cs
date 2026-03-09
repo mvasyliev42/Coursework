@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Coursework.Data;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Coursework
 {
@@ -19,6 +20,7 @@ namespace Coursework
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
 
             _host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>

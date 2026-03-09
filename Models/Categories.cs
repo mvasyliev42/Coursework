@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Coursework.Models
 {
-    public class Categories
+    public class Categories: IModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
